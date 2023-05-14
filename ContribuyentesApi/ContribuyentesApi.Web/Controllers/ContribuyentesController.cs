@@ -2,7 +2,6 @@
 using ContribuyentesApi.Core.Entities;
 using ContribuyentesApi.Core.Interfaces.Services;
 using ContribuyentesApi.Web.DTOs;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ContribuyentesApi.Web.Controllers

@@ -1,28 +1,39 @@
 ﻿using ContribuyentesApi.Core.Interfaces.Repositories;
 using ContribuyentesApi.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
+using Microsoft.Extensions.Logging;
 
 
 namespace ContribuyentesApi.Infrastructure.Repositories
 {
     public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
-        internal ApplicationDbContext Context;
-        internal DbSet<TEntity> dbSet;
+        internal ApplicationDbContext _context;
+        internal DbSet<TEntity> _dbSet;
+        internal ILogger _logger;
 
 
-        public BaseRepository(ApplicationDbContext context)
+        public BaseRepository(ApplicationDbContext context, ILogger logger)
         {
-            Context = context;
-            dbSet = context.Set<TEntity>();
+            _context = context;
+            _dbSet = context.Set<TEntity>();
+            _logger = logger;
         }
 
-        public async ValueTask<TEntity> ObtenerPorId(int id)
+        public async Task<TEntity?> ObtenerPorId(int id)
         {
-            var entity = await dbSet.FindAsync(id);
+            TEntity? entidad = null;
+            try 
+            {
+                _logger.LogInformation($"Buscando entidad {typeof(TEntity)} con el id {id}.");
+                entidad =  await _dbSet.FindAsync(id);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Ha ocurrido un error al momento de buscar la entidad {typeof(TEntity)} con el id {id}.");
+            }
+            return entidad;
 
-            return entity is null ? throw new Exception("No se encontro...") : entity;
         }
     }
 }

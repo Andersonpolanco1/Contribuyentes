@@ -18,9 +18,9 @@ namespace ContribuyentesApi.Services
             return await _contribuyenteRepository.ObtenerTodosLosContribuyentes();
         }
 
-        public async Task<Contribuyente> ObtenerPorId(int id)
+        public async Task<Contribuyente?> ObtenerPorId(int id)
         {
-            return await _contribuyenteRepository.ObtenerPorId(id);//manejar excepcion
+            return await _contribuyenteRepository.ObtenerPorId(id);
         }
 
         public async Task<IEnumerable<ComprobanteFiscal>> ObtenerComprobantesPorIdContribuyente(int idContribuyente)
