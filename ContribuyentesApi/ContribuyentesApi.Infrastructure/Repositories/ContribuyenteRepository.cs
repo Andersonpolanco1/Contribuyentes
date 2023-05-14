@@ -18,5 +18,15 @@ namespace ContribuyentesApi.Infrastructure.Repositories
 
             return (contribuyente is null || contribuyente.ComprobantesFiscales is null) ? new List<ComprobanteFiscal>() : contribuyente.ComprobantesFiscales;
         }
+
+        public async Task<IEnumerable<Contribuyente>> ObtenerTodosLosContribuyentes()
+        {
+            return await Context.Contribuyentes.Include(c => c.TipoContribuyente).ToListAsync();
+        }
+
+        public async Task<IEnumerable<ComprobanteFiscal>> ObtenerTodosLosComprobantes()
+        {
+            return await Context.ComprobantesFiscales.Include(c => c.Contribuyente).ToListAsync();
+        }
     }
 }

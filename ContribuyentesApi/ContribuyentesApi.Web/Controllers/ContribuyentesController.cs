@@ -31,6 +31,16 @@ namespace ContribuyentesApi.Web.Controllers
         }
 
         [HttpGet]
+        [Route("comprobantes")]
+        public async Task<ActionResult<IEnumerable<ComprobanteFiscalDto>>> ObtenerComprobantes()
+        {
+            var comprobantes = await _ContribuyenteService.ObtenerTodosLosComprobantes();
+            var comprobantesDto = _mapper.Map<IEnumerable<ComprobanteFiscal>, IEnumerable<ComprobanteFiscalDto>>(comprobantes);
+
+            return Ok(comprobantesDto);
+        }
+
+        [HttpGet]
         [Route("{contribuyenteId}/comprobantes")]
         public async Task<ActionResult<IEnumerable<ComprobanteFiscalDto>>> ObtenerComprobantes([FromRoute] int contribuyenteId)
         {

@@ -4,6 +4,9 @@ namespace ContribuyentesApi.Core.Interfaces.Repositories
 {
     public interface IContribuyenteRepository : IBaseRepository<Contribuyente>
     {
+        Task<IEnumerable<Contribuyente>> ObtenerTodosLosContribuyentes();
         Task<IEnumerable<ComprobanteFiscal>> ObtenerComprobantesPorIdContribuyente(int idContribuyente);
+        Task<IEnumerable<ComprobanteFiscal>> ObtenerTodosLosComprobantes();
+        
     }
 }

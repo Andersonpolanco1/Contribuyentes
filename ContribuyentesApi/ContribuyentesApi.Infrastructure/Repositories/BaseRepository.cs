@@ -20,26 +20,9 @@ namespace ContribuyentesApi.Infrastructure.Repositories
 
         public async ValueTask<TEntity> ObtenerPorId(int id)
         {
-            return await dbSet.FindAsync(id);
+            var entity = await dbSet.FindAsync(id);
+
+            return entity is null ? throw new Exception("No se encontro...") : entity;
         }
-
-        public virtual async Task<IEnumerable<TEntity>> ObtenerTodos(Expression<Func<TEntity, bool>>? filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null, string includeProperties = "")
-        {
-            IQueryable<TEntity> query = dbSet.AsQueryable();
-
-            if (filter != null)
-                query = query.Where(filter);
-
-            foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-            {
-                query = query .Include(includeProperty);
-            }
-
-            if (orderBy != null)
-                return await orderBy(query).ToListAsync();
-            else
-                return await query.ToListAsync();
-        }
-
     }
 }

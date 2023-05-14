@@ -15,17 +15,22 @@ namespace ContribuyentesApi.Services
 
         public async Task<IEnumerable<Contribuyente>> ObtenerTodos()
         {
-            return await _contribuyenteRepository.ObtenerTodos(null,null, "TipoContribuyente");
+            return await _contribuyenteRepository.ObtenerTodosLosContribuyentes();
         }
 
         public async Task<Contribuyente> ObtenerPorId(int id)
         {
-            return await _contribuyenteRepository.ObtenerPorId(id);
+            return await _contribuyenteRepository.ObtenerPorId(id);//manejar excepcion
         }
 
         public async Task<IEnumerable<ComprobanteFiscal>> ObtenerComprobantesPorIdContribuyente(int idContribuyente)
         {
             return await _contribuyenteRepository.ObtenerComprobantesPorIdContribuyente(idContribuyente);
+        }
+
+        public Task<IEnumerable<ComprobanteFiscal>> ObtenerTodosLosComprobantes()
+        {
+            return _contribuyenteRepository.ObtenerTodosLosComprobantes();
         }
     }
 }
