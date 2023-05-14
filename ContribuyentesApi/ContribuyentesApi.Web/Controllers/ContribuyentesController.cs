@@ -19,7 +19,6 @@ namespace ContribuyentesApi.Web.Controllers
             _mapper = mapper;
         }
 
-
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ContribuyenteDto>>> ObtenerTodos()
         {

@@ -8,9 +8,17 @@ namespace ContribuyentesApi.Infrastructure.Repositories
 {
     public class ContribuyenteRepository : BaseRepository<Contribuyente>, IContribuyenteRepository
     {
-        public ContribuyenteRepository(ApplicationDbContext context, ILogger logger) : base(context, logger)
+        private readonly ILogger<ContribuyenteRepository> _logger;
+
+        public ContribuyenteRepository(ApplicationDbContext context, ILogger<ContribuyenteRepository> logger) : base(context)
         {
-            
+            _logger =logger;
+        }
+
+        public async Task<Contribuyente?> ObtenerPorId(int id)
+        {
+            _logger.LogInformation($"Buscando contribuyente {id}.");
+            return await _context.Contribuyentes.Include(c => c.TipoContribuyente).FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task<IEnumerable<ComprobanteFiscal>> ObtenerComprobantesPorIdContribuyente(int idContribuyente)
