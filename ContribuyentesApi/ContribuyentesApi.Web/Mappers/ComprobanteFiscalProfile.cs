@@ -11,7 +11,7 @@ namespace ContribuyentesApi.Web.Mappers
         {
             CreateMap<ComprobanteFiscal, ComprobanteFiscalDto>()
                 .ForMember(dest => dest.RncCedula, opts => opts.MapFrom(src => src.Contribuyente.RncCedula))
-                .ForMember(dest => dest.Itbis, opts => opts.MapFrom(src => src.Itbis.ToString()))
+                .ForMember(dest => dest.Itbis18, opts => opts.MapFrom(src => src.Itbis.ToString()))
                 .ForMember(dest => dest.Monto, opts => opts.MapFrom(src => src.Monto.ToString()));
         }
     }

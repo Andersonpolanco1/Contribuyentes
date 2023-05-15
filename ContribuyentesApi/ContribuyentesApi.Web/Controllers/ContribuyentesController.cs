@@ -20,6 +20,15 @@ namespace ContribuyentesApi.Web.Controllers
         }
 
         [HttpGet]
+        [Route("{rncCedula}")]
+        public async Task<ActionResult<IEnumerable<ContribuyenteDto>>> ObtenerContribuyente([FromRoute] string rncCedula)
+        {
+            var contribuyente = await _ContribuyenteService.ObtenerPorId(rncCedula);
+
+            return contribuyente is null ? Ok() : Ok(_mapper.Map<Contribuyente, ContribuyenteDto>(contribuyente));
+        }
+
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<ContribuyenteDto>>> ObtenerTodos()
         {
             var contribuyentes = await _ContribuyenteService.ObtenerTodos();
@@ -39,10 +48,10 @@ namespace ContribuyentesApi.Web.Controllers
         }
 
         [HttpGet]
-        [Route("{contribuyenteId}/comprobantes")]
-        public async Task<ActionResult<IEnumerable<ComprobanteFiscalDto>>> ObtenerComprobantes([FromRoute] int contribuyenteId)
+        [Route("{rncCedula}/comprobantes")]
+        public async Task<ActionResult<IEnumerable<ComprobanteFiscalDto>>> ObtenerComprobantes([FromRoute] string rncCedula)
         {
-            var comprobantes = await _ContribuyenteService.ObtenerComprobantesPorIdContribuyente(contribuyenteId);
+            var comprobantes = await _ContribuyenteService.ObtenerComprobantesPorRncCedulaContribuyente(rncCedula);
             var comprobantesDto = _mapper.Map<IEnumerable<ComprobanteFiscal>, IEnumerable<ComprobanteFiscalDto>>(comprobantes);
 
             return Ok(comprobantesDto);

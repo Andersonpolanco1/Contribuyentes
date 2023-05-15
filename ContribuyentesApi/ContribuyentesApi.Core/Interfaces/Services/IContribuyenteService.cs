@@ -4,9 +4,9 @@ namespace ContribuyentesApi.Core.Interfaces.Services
 {
     public interface IContribuyenteService
     {
-        Task<Contribuyente?> ObtenerPorId(int id);
+        Task<Contribuyente?> ObtenerPorId(string rncCedula);
         Task<IEnumerable<Contribuyente>> ObtenerTodos();
-        Task<IEnumerable<ComprobanteFiscal>> ObtenerComprobantesPorIdContribuyente(int idContribuyente);
+        Task<IEnumerable<ComprobanteFiscal>> ObtenerComprobantesPorRncCedulaContribuyente(string rncCedula);
         Task<IEnumerable<ComprobanteFiscal>> ObtenerTodosLosComprobantes();
 
     }

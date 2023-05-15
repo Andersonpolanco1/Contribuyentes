@@ -9,6 +9,6 @@ namespace ContribuyentesApi.Web.DTOs
         public string RncCedula { get; set; }
         public string NCF { get; set; }
         public string Monto { get; set; }
-        public string Itbis { get; set; }
+        public string Itbis18 { get; set; }
     }
 }

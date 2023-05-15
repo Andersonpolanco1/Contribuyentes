@@ -15,17 +15,17 @@ namespace ContribuyentesApi.Infrastructure.Repositories
             _logger =logger;
         }
 
-        public async Task<Contribuyente?> ObtenerPorId(int id)
+        public async Task<Contribuyente?> ObtenerPorId(string rncCedula)
         {
-            _logger.LogInformation($"Buscando contribuyente {id}.");
-            return await _context.Contribuyentes.Include(c => c.TipoContribuyente).FirstOrDefaultAsync(c => c.Id == id);
+            _logger.LogInformation($"Buscando contribuyente {rncCedula}.");
+            return await _context.Contribuyentes.Include(c => c.TipoContribuyente).FirstOrDefaultAsync(c => c.RncCedula == rncCedula);
         }
 
-        public async Task<IEnumerable<ComprobanteFiscal>> ObtenerComprobantesPorIdContribuyente(int idContribuyente)
+        public async Task<IEnumerable<ComprobanteFiscal>> ObtenerComprobantesPorRncCedulaContribuyente(string rncCedula)
         {
-            _logger.LogInformation($"Obteniendo comprobantes del contribuyente id {idContribuyente} ...");
+            _logger.LogInformation($"Obteniendo comprobantes del contribuyente  {rncCedula} ...");
 
-            var contribuyente = await _context.Contribuyentes.Include(c => c.ComprobantesFiscales).FirstOrDefaultAsync(c => idContribuyente == c.Id);
+            var contribuyente = await _context.Contribuyentes.Include(c => c.ComprobantesFiscales).FirstOrDefaultAsync(c => rncCedula == c.RncCedula);
 
             if(contribuyente is null)
                 _logger.LogWarning($"Contribuyente no encontrado.");
