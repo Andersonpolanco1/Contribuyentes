@@ -1,0 +1,34 @@
+<h3 class="mt-4">Datos del contribuyente</h3>
+<hr>
+<div *ngIf="contribuyente">
+  <span class="fw-bold">Contribuyente:</span><span> {{contribuyente.nombre | uppercase}}</span><br/>
+  <span class="fw-bold">RNC / Cédula: </span> <span>{{contribuyente.rncCedula | uppercase}}</span><br/>
+  <span class="fw-bold">Tipo: </span><span>{{contribuyente.tipo | uppercase}}</span><br/>
+  <span class="fw-bold">Estado: </span><span>{{contribuyente.estatus | uppercase}}</span><br/>
+</div> 
+
+<h3 class="mt-5">Comprobantes fiscales</h3>
+<hr>
+
+<div class="mx-3">
+  <table class="table table-hover w-100">
+    <thead>
+      <tr>
+        <th>RNC/Cedula</th>
+        <th>NCF</th>
+        <th>Monto</th>
+        <th>ITBIS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let comprobante of comprobantes">
+        <td>{{ comprobante.rncCedula }}</td>
+        <td>{{ comprobante.ncf }}</td>
+        <td>{{ comprobante.monto }}</td>
+        <td>{{ comprobante.itbis18 }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<button type="button" class="btn btn-outline-success" (click)="volverAtras()">Regresar</button>

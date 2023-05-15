@@ -1,0 +1,27 @@
+<h2 class="my-4">Contribuyentes</h2>
+
+<div class="mx-3">
+  <table class="table table-hover w-100">
+    <thead>
+      <tr>
+        <th>RNC/Cedula</th>
+        <th>Nombre</th>
+        <th>Tipo</th>
+        <th>Estatus</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contribuyente of contribuyentes">
+        <td>{{ contribuyente.rncCedula }}</td>
+        <td>{{ contribuyente.nombre }}</td>
+        <td>{{ contribuyente.tipo }}</td>
+        <td>{{ contribuyente.estatus }}</td>
+        <td>
+          <a routerLink="/contribuyentes/{{contribuyente.rncCedula}}">comprobantes</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
