@@ -14,8 +14,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"),
-                    x => x.MigrationsAssembly("ContribuyentesApi.Infrastructure")));
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"),
+        x => x.MigrationsAssembly("ContribuyentesApi.Infrastructure")));
 
 builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 builder.Services.AddScoped(typeof(IContribuyenteService), typeof(ContribuyentesService));
@@ -23,6 +23,14 @@ builder.Services.AddScoped(typeof(IContribuyenteRepository), typeof(Contribuyent
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder => 
+    builder.WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
 
 var app = builder.Build();
 
@@ -37,5 +45,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors();
 
 app.Run();
