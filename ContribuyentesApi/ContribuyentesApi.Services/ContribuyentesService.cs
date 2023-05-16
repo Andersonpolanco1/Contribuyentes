@@ -18,7 +18,7 @@ namespace ContribuyentesApi.Services
             return await _contribuyenteRepository.ObtenerTodosLosContribuyentes();
         }
 
-        public async Task<Contribuyente?> ObtenerPorId(string rncCedula)
+        public async Task<Contribuyente?> ObtenerPorRncCedula(string rncCedula)
         {
             return await _contribuyenteRepository.ObtenerPorId(rncCedula);
         }

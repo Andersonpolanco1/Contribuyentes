@@ -20,15 +20,7 @@ namespace ContribuyentesApi.Web.Controllers
         }
 
         [HttpGet]
-        [Route("{rncCedula}")]
-        public async Task<ActionResult<IEnumerable<ContribuyenteDto>>> ObtenerContribuyente([FromRoute] string rncCedula)
-        {
-            var contribuyente = await _ContribuyenteService.ObtenerPorId(rncCedula);
-
-            return contribuyente is null ? Ok() : Ok(_mapper.Map<Contribuyente, ContribuyenteDto>(contribuyente));
-        }
-
-        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ContribuyenteDto>))]
         public async Task<ActionResult<IEnumerable<ContribuyenteDto>>> ObtenerTodos()
         {
             var contribuyentes = await _ContribuyenteService.ObtenerTodos();
@@ -37,8 +29,19 @@ namespace ContribuyentesApi.Web.Controllers
             return Ok(contribuyentesDto);
         }
 
-        [HttpGet]
-        [Route("comprobantes")]
+        [HttpGet("{rncCedula}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ContribuyenteDto))]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<IEnumerable<ContribuyenteDto>>> ObtenerContribuyente([FromQuery] string? rncCedula)
+        {
+            var contribuyente = await _ContribuyenteService.ObtenerPorRncCedula(rncCedula);
+
+            return contribuyente is null ? Ok() : Ok(_mapper.Map<Contribuyente, ContribuyenteDto>(contribuyente));
+        }
+
+
+        [HttpGet("comprobantes")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ComprobanteFiscalDto>))]
         public async Task<ActionResult<IEnumerable<ComprobanteFiscalDto>>> ObtenerComprobantes()
         {
             var comprobantes = await _ContribuyenteService.ObtenerTodosLosComprobantes();
@@ -47,8 +50,8 @@ namespace ContribuyentesApi.Web.Controllers
             return Ok(comprobantesDto);
         }
 
-        [HttpGet]
-        [Route("{rncCedula}/comprobantes")]
+        [HttpGet("{rncCedula}/comprobantes")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ComprobanteFiscalDto>))]
         public async Task<ActionResult<IEnumerable<ComprobanteFiscalDto>>> ObtenerComprobantes([FromRoute] string rncCedula)
         {
             var comprobantes = await _ContribuyenteService.ObtenerComprobantesPorRncCedulaContribuyente(rncCedula);
