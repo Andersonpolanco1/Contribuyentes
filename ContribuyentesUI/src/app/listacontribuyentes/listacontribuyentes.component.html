@@ -1,31 +1,40 @@
 <h5 class="mt-4">CONTRIBUYENTES</h5>
 <hr>
 
-<div class="my-5">
-  <table class="table table-striped w-100">
-    <thead>
-      <tr>
-        <th style="color: #2cb34a;">RNC/Cedula</th>
-        <th style="color: #2cb34a;">Nombre</th>
-        <th style="color: #2cb34a;">Tipo</th>
-        <th style="color: #2cb34a;">Estatus</th>
-        <th style="color: #2cb34a;"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let contribuyente of contribuyentes | paginate: { itemsPerPage: 6, currentPage: p, totalItems: total}">
-        <td>{{ contribuyente.rncCedula }}</td>
-        <td>{{ contribuyente.nombre }}</td>
-        <td>{{ contribuyente.tipo }}</td>
-        <td>{{ contribuyente.estatus }}</td>
-        <td>
-            <a routerLink="/contribuyentes/{{contribuyente.rncCedula}}">consultar</a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="w-100 d-flex">
-    <div class="w-75 d-flex justify"><pagination-controls (pageChange)="p = $event"></pagination-controls></div>
-    <div class="w-25">{{total}} registros </div>
+<div class="card text-center">
+  <div style="background-color: #a4ce42; color: aliceblue;" class="card-header">
+    <b>CONTRIBUYENTES</b>
   </div>
-
+  <div class="card-body">
+    <table class="table table-striped w-100">
+      <thead>
+        <tr>
+          <th style="color: #2cb34a;">RNC/Cedula</th>
+          <th style="color: #2cb34a;">Nombre</th>
+          <th style="color: #2cb34a;">Tipo</th>
+          <th style="color: #2cb34a;">Estatus</th>
+          <th style="color: #2cb34a;"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contribuyente of contribuyentes | paginate: { itemsPerPage: 6, currentPage: p, totalItems: total}">
+          <td>{{ contribuyente.rncCedula }}</td>
+          <td>{{ contribuyente.nombre }}</td>
+          <td>{{ contribuyente.tipo }}</td>
+          <td>{{ contribuyente.estatus }}</td>
+          <td>
+              <a routerLink="/contribuyentes/{{contribuyente.rncCedula}}">consultar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </div>
+  <div class="card-footer text-muted">
+    <div class="w-100 d-flex">
+      <div class="w-75 d-flex justify">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+      <div class="w-25">{{total}} registros </div>
+  </div>
+</div>
