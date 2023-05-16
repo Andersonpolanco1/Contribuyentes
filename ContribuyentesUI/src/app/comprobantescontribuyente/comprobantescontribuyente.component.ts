@@ -37,7 +37,7 @@ export class ComprobantescontribuyenteComponent implements OnInit {
     let rncCedula:string | null = this.route.snapshot.paramMap.get('rncCedula');
 
     if(rncCedula){
-      this.contribuyentesService.obtenerComprobantes(rncCedula)
+      this.contribuyentesService.obtenerComprobantesPorRncCedula(rncCedula)
         .subscribe(res => {
           this.comprobantes = res;
           this.total = this.comprobantes.length;
@@ -46,8 +46,12 @@ export class ComprobantescontribuyenteComponent implements OnInit {
           })
         });
 
-      this.contribuyentesService.obtenerContribuyente(rncCedula)
-        .subscribe(res => this.contribuyente = res);
+      this.contribuyentesService.obtenerContribuyentePorRncCedula(rncCedula)
+        .subscribe(res => {
+          if(res.length > 0){
+            this.contribuyente = res[0];
+          }
+        });
     }
   }
 

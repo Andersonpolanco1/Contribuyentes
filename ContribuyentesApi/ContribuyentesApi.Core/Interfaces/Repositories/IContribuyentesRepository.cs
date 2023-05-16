@@ -4,10 +4,21 @@ namespace ContribuyentesApi.Core.Interfaces.Repositories
 {
     public interface IContribuyenteRepository : IBaseRepository<Contribuyente>
     {
-        Task<Contribuyente?> ObtenerPorId(string rncCedula);
-        Task<IEnumerable<Contribuyente>> ObtenerTodosLosContribuyentes();
-        Task<IEnumerable<ComprobanteFiscal>> ObtenerComprobantesPorRncCedulaContribuyente(string rncCedula);
-        Task<IEnumerable<ComprobanteFiscal>> ObtenerTodosLosComprobantes();
-        
+
+        /// <summary>
+        /// Buscar todos los contribuyentes, se puede filtrar por RNC o Cédula opcional
+        /// </summary>
+        /// <param name="rncCedula"></param>
+        /// <returns></returns>
+        Task<IEnumerable<Contribuyente>> ObtenerTodosLosContribuyentes(string? rncCedula);
+
+
+        /// <summary>
+        /// Buscar todos los comprobantes fiscales, se puede filtrar por RNC o Cédula opcional
+        /// </summary>
+        /// <param name="rncCedula"></param>
+        /// <returns></returns>
+        Task<IEnumerable<ComprobanteFiscal>> ObtenerTodosLosComprobantes(string? rncCedula);
+
     }
 }

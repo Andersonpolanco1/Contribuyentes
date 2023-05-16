@@ -15,34 +15,28 @@ namespace ContribuyentesApi.Infrastructure.Repositories
             _logger =logger;
         }
 
-        public async Task<Contribuyente?> ObtenerPorId(string rncCedula)
+        public async Task<IEnumerable<Contribuyente>> ObtenerTodosLosContribuyentes(string? rncCedula)
         {
-            _logger.LogInformation($"Buscando contribuyente {rncCedula}.");
-            return await _context.Contribuyentes.Include(c => c.TipoContribuyente).FirstOrDefaultAsync(c => c.RncCedula == rncCedula);
+            if(rncCedula is null)
+            {
+                _logger.LogInformation($"Obteniendo contribuyentes...");
+                return await _context.Contribuyentes.Include(c => c.TipoContribuyente).ToListAsync();
+            }
+
+            _logger.LogInformation($"Obteniendo contribuyentes RNC / Cedula: {rncCedula}");
+            return await _context.Contribuyentes.Include(c => c.TipoContribuyente).Where(c => c.RncCedula == rncCedula).ToListAsync();
         }
 
-        public async Task<IEnumerable<ComprobanteFiscal>> ObtenerComprobantesPorRncCedulaContribuyente(string rncCedula)
+        public async Task<IEnumerable<ComprobanteFiscal>> ObtenerTodosLosComprobantes(string? rncCedula)
         {
-            _logger.LogInformation($"Obteniendo comprobantes del contribuyente  {rncCedula} ...");
+            if (rncCedula is null)
+            {
+                _logger.LogInformation($"Obteniendo comprobantes fiscales...");
+                return await _context.ComprobantesFiscales.Include(c => c.Contribuyente).ToListAsync();
+            }
 
-            var contribuyente = await _context.Contribuyentes.Include(c => c.ComprobantesFiscales).FirstOrDefaultAsync(c => rncCedula == c.RncCedula);
-
-            if(contribuyente is null)
-                _logger.LogWarning($"Contribuyente no encontrado.");
-
-            return (contribuyente is null || contribuyente.ComprobantesFiscales is null) ? new List<ComprobanteFiscal>() : contribuyente.ComprobantesFiscales;
-        }
-
-        public async Task<IEnumerable<Contribuyente>> ObtenerTodosLosContribuyentes()
-        {
-            _logger.LogWarning($"Obteniendo todos los contribuyentes...");
-            return await _context.Contribuyentes.Include(c => c.TipoContribuyente).ToListAsync();
-        }
-
-        public async Task<IEnumerable<ComprobanteFiscal>> ObtenerTodosLosComprobantes()
-        {
-            _logger.LogWarning($"Obteniendo todos los comprobantes fiscales...");
-            return await _context.ComprobantesFiscales.Include(c => c.Contribuyente).ToListAsync();
+            _logger.LogInformation($"Obteniendo comprobantes con RNC / Cedula: {rncCedula}");
+            return await _context.ComprobantesFiscales.Include(c => c.Contribuyente).Where(c => c.Contribuyente.RncCedula == rncCedula).ToListAsync();
         }
     }
 }

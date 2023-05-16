@@ -13,20 +13,17 @@ export class ContribuyentesService {
   constructor(private http : HttpClient) { }
 
   API_BASE_URL: string ="https://localhost:7291/api/";
-  CONTRIBUYENTES_URL: string = this.API_BASE_URL + "contribuyentes/";
-  COMPROBANTES_CONTRIBUYENTE_URL: string = this.CONTRIBUYENTES_URL + "/:rncCedula/comprobantes";
-
-
+  CONTRIBUYENTES_URL: string = this.API_BASE_URL + "contribuyentes";
+  COMPROBANTES_URL: string = this.CONTRIBUYENTES_URL + "/comprobantes";
 
   obtenerContribuyentes() : Observable<Contribuyente[]>{
     return this.http.get<Contribuyente[]>(this.CONTRIBUYENTES_URL);
   }
 
-
-  obtenerComprobantes(rncCedula : string) : Observable<ComprobanteFiscal[]>{
-    return this.http.get<ComprobanteFiscal[]>(this.CONTRIBUYENTES_URL + rncCedula+"/comprobantes/");
+  obtenerComprobantesPorRncCedula(rncCedula : string) : Observable<ComprobanteFiscal[]>{
+    return this.http.get<ComprobanteFiscal[]>(this.COMPROBANTES_URL +"?rncCedula="+rncCedula);
   }
 
-  obtenerContribuyente(rncCedula : string) : Observable<Contribuyente>{
-    return this.http.get<Contribuyente>(this.CONTRIBUYENTES_URL + rncCedula);
+  obtenerContribuyentePorRncCedula(rncCedula : string) : Observable<Contribuyente[]>{
+    return this.http.get<Contribuyente[]>(this.CONTRIBUYENTES_URL + "?rncCedula="+rncCedula);
   }}

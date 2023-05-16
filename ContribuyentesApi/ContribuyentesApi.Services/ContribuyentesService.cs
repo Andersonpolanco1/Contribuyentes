@@ -13,24 +13,14 @@ namespace ContribuyentesApi.Services
             _contribuyenteRepository = contribuyenteRepository;
         }
 
-        public async Task<IEnumerable<Contribuyente>> ObtenerTodos()
+        public async Task<IEnumerable<Contribuyente>> ObtenerTodosLosContribuyentes(string? rncCedula)
         {
-            return await _contribuyenteRepository.ObtenerTodosLosContribuyentes();
+            return await _contribuyenteRepository.ObtenerTodosLosContribuyentes(rncCedula);
         }
 
-        public async Task<Contribuyente?> ObtenerPorRncCedula(string rncCedula)
+        public async  Task<IEnumerable<ComprobanteFiscal>> ObtenerTodosLosComprobantes(string? rncCedula)
         {
-            return await _contribuyenteRepository.ObtenerPorId(rncCedula);
-        }
-
-        public async Task<IEnumerable<ComprobanteFiscal>> ObtenerComprobantesPorRncCedulaContribuyente(string rncCedula)
-        {
-            return await _contribuyenteRepository.ObtenerComprobantesPorRncCedulaContribuyente(rncCedula);
-        }
-
-        public Task<IEnumerable<ComprobanteFiscal>> ObtenerTodosLosComprobantes()
-        {
-            return _contribuyenteRepository.ObtenerTodosLosComprobantes();
+            return await _contribuyenteRepository.ObtenerTodosLosComprobantes(rncCedula);
         }
     }
 }
