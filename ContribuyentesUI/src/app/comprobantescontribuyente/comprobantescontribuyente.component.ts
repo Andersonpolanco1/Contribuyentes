@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ContribuyentesService } from '../services/contribuyentes.service';
 import { ComprobanteFiscal } from '../modelos/comprobantefiscal';
 import { Contribuyente } from '../modelos/contribuyente';
@@ -17,10 +17,10 @@ export class ComprobantescontribuyenteComponent implements OnInit {
     private route: ActivatedRoute,
     private contribuyentesService: ContribuyentesService,
     private location: Location,
-    private router: Router
   ) {}
 
   comprobantes: ComprobanteFiscal[] = [];
+  totalSumaItbis18 : number = 0.00;
   contribuyente : Contribuyente = {
     rncCedula: '',
     nombre: '',
@@ -36,11 +36,17 @@ export class ComprobantescontribuyenteComponent implements OnInit {
     let rncCedula:string | null = this.route.snapshot.paramMap.get('rncCedula');
 
     if(rncCedula){
-        this.contribuyentesService.obtenerComprobantes(rncCedula)
-          .subscribe(res => this.comprobantes = res);
+      this.contribuyentesService.obtenerComprobantes(rncCedula)
+        .subscribe(res => {
+          this.comprobantes = res;
 
-          this.contribuyentesService.obtenerContribuyente(rncCedula)
-          .subscribe(res => this.contribuyente = res);
+          res.forEach(c => {
+            this.totalSumaItbis18+= Number(c.itbis18)
+          })
+        });
+
+      this.contribuyentesService.obtenerContribuyente(rncCedula)
+        .subscribe(res => this.contribuyente = res);
     }
   }
 

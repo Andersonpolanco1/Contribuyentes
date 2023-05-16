@@ -1,28 +1,71 @@
-<h3 class="mt-4">Datos del contribuyente</h3>
+
+<h5 class="mt-4">DATOS DEL CONTRIBUYENTE</h5>
 <hr>
 <div *ngIf="contribuyente">
-  <span class="fw-bold">Contribuyente:</span><span> {{contribuyente.nombre | uppercase}}</span><br/>
-  <span class="fw-bold">RNC / Cédula: </span> <span>{{contribuyente.rncCedula | uppercase}}</span><br/>
-  <span class="fw-bold">Tipo: </span><span>{{contribuyente.tipo | uppercase}}</span><br/>
-  <span class="fw-bold">Estado: </span><span>{{contribuyente.estatus | uppercase}}</span><br/>
+    <div class="w-50">
+        <div class="row">
+          <div class="col">
+            <span class="fw-bold">Contribuyente:</span>
+          </div>
+          <div class="col">
+            <span> {{contribuyente.nombre | uppercase}}</span>
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <span class="fw-bold">RNC / Cédula: </span>
+            </div>
+            <div class="col">
+                <span>{{contribuyente.rncCedula | uppercase}}</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+                <span class="fw-bold">Tipo: </span>
+            </div>
+            <div class="col">
+                <span>{{contribuyente.tipo | uppercase}}</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+                <span class="fw-bold">Estado: </span>
+            </div>
+            <div class="col">
+                <span>{{contribuyente.estatus | uppercase}}</span>
+            </div>
+          </div>
+      </div>
 </div> 
 
-<h3 class="mt-5">Comprobantes fiscales</h3>
+<div class=" d-flex justify-content-around my-5 rounded-pill w-25 px-3" style="background-color: #2cb34a;">
+
+    <div>
+        <b><span style="color: #eff0ef; text-decoration: solid;">Total ITBIS:</span></b>
+    </div>
+
+    <div>
+        <b>{{ totalSumaItbis18 | number:'1.2-2' }}</b>
+    </div>
+</div>
+
+<h5 class="mt-5">COMPROBANTES FISCALES</h5>
 <hr>
 
-<div class="mx-3">
-  <table class="table table-hover w-100">
+<div class="my-5">
+  <table class="table table-striped w-100">
     <thead>
       <tr>
-        <th>RNC/Cedula</th>
-        <th>NCF</th>
-        <th>Monto</th>
-        <th>ITBIS</th>
+        <th style="color: #2cb34a;">NCF</th>
+        <th style="color: #2cb34a;">Monto</th>
+        <th style="color: #2cb34a;">ITBIS</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let comprobante of comprobantes">
-        <td>{{ comprobante.rncCedula }}</td>
         <td>{{ comprobante.ncf }}</td>
         <td>{{ comprobante.monto }}</td>
         <td>{{ comprobante.itbis18 }}</td>
@@ -31,4 +74,8 @@
   </table>
 </div>
 
-<button type="button" class="btn btn-outline-success" (click)="volverAtras()">Regresar</button>
+<div>
+    <button type="button" class="btn btn-outline-success rounded-pill" (click)="volverAtras()">Regresar</button>
+</div>
+
+

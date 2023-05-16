@@ -1,14 +1,15 @@
-<h2 class="my-4">Contribuyentes</h2>
+<h5 class="mt-4">CONTRIBUYENTES</h5>
+<hr>
 
-<div class="mx-3">
-  <table class="table table-hover w-100">
+<div class="my-5">
+  <table class="table table-striped w-100">
     <thead>
       <tr>
-        <th>RNC/Cedula</th>
-        <th>Nombre</th>
-        <th>Tipo</th>
-        <th>Estatus</th>
-        <th></th>
+        <th style="color: #2cb34a;">RNC/Cedula</th>
+        <th style="color: #2cb34a;">Nombre</th>
+        <th style="color: #2cb34a;">Tipo</th>
+        <th style="color: #2cb34a;">Estatus</th>
+        <th style="color: #2cb34a;"></th>
       </tr>
     </thead>
     <tbody>
@@ -18,7 +19,7 @@
         <td>{{ contribuyente.tipo }}</td>
         <td>{{ contribuyente.estatus }}</td>
         <td>
-          <a routerLink="/contribuyentes/{{contribuyente.rncCedula}}">comprobantes</a>
+            <a routerLink="/contribuyentes/{{contribuyente.rncCedula}}">consultar</a>
         </td>
       </tr>
     </tbody>
