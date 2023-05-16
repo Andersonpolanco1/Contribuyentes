@@ -13,7 +13,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let contribuyente of contribuyentes">
+      <tr *ngFor="let contribuyente of contribuyentes | paginate: { itemsPerPage: 6, currentPage: p, totalItems: total}">
         <td>{{ contribuyente.rncCedula }}</td>
         <td>{{ contribuyente.nombre }}</td>
         <td>{{ contribuyente.tipo }}</td>
@@ -24,5 +24,8 @@
       </tr>
     </tbody>
   </table>
-</div>
+  <div class="w-100 d-flex">
+    <div class="w-75 d-flex justify"><pagination-controls (pageChange)="p = $event"></pagination-controls></div>
+    <div class="w-25">{{total}} registros </div>
+  </div>
 

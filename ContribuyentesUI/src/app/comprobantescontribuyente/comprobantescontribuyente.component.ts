@@ -18,7 +18,8 @@ export class ComprobantescontribuyenteComponent implements OnInit {
     private contribuyentesService: ContribuyentesService,
     private location: Location,
   ) {}
-
+  p: number = 1;
+  total: number = 0;
   comprobantes: ComprobanteFiscal[] = [];
   totalSumaItbis18 : number = 0.00;
   contribuyente : Contribuyente = {
@@ -39,7 +40,7 @@ export class ComprobantescontribuyenteComponent implements OnInit {
       this.contribuyentesService.obtenerComprobantes(rncCedula)
         .subscribe(res => {
           this.comprobantes = res;
-
+          this.total = this.comprobantes.length;
           res.forEach(c => {
             this.totalSumaItbis18+= Number(c.itbis18)
           })

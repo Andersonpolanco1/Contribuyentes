@@ -12,6 +12,8 @@ export class ListacontribuyentesComponent implements OnInit{
 
   title = 'Lista de contribuyentes';
   contribuyentes: Contribuyente[] = [];
+  p: number = 1;
+  total: number = 0;
 
   constructor(private contribuyenteService:ContribuyentesService){}
 
@@ -21,7 +23,10 @@ export class ListacontribuyentesComponent implements OnInit{
 
   obtenerContribuyentes(){
     this.contribuyenteService.obtenerContribuyentes()
-      .subscribe(res => this.contribuyentes = res);
+      .subscribe(res => {
+        this.contribuyentes = res;
+        this.total = this.contribuyentes.length;
+      });
   }
 }
 
