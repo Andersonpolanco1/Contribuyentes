@@ -21,7 +21,7 @@ namespace ContribuyentesApi.Web.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ContribuyenteDto>))]
-        public async Task<ActionResult<IEnumerable<ContribuyenteDto>>> ObtenerTodos([FromQuery] string? rncCedula)
+        public async Task<IActionResult> ObtenerTodosLosContribuyentes([FromQuery] string? rncCedula)
         {
             var contribuyentes = await _ContribuyenteService.ObtenerTodosLosContribuyentes(rncCedula);
             var contribuyentesDto = _mapper.Map<IEnumerable<Contribuyente>, IEnumerable<ContribuyenteDto>>(contribuyentes);
@@ -31,7 +31,7 @@ namespace ContribuyentesApi.Web.Controllers
 
         [HttpGet("comprobantes")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ComprobanteFiscalDto>))]
-        public async Task<ActionResult<IEnumerable<ComprobanteFiscalDto>>> ObtenerComprobantes([FromQuery] string? rncCedula)
+        public async Task<IActionResult> ObtenerTodosLosComprobantes([FromQuery] string? rncCedula)
         {
             var comprobantes = await _ContribuyenteService.ObtenerTodosLosComprobantes(rncCedula);
             var comprobantesDto = _mapper.Map<IEnumerable<ComprobanteFiscal>, IEnumerable<ComprobanteFiscalDto>>(comprobantes);

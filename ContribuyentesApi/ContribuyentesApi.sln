@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContribuyentesApi.Web", "ContribuyentesApi.Web\ContribuyentesApi.Web.csproj", "{9412181A-B6EE-43F5-BC1C-2D5DBAD87067}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContribuyentesApi.Web", "ContribuyentesApi.Web\ContribuyentesApi.Web.csproj", "{9412181A-B6EE-43F5-BC1C-2D5DBAD87067}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContribuyentesApi.Core", "ContribuyentesApi.Core\ContribuyentesApi.Core.csproj", "{9302221E-46EF-4BEA-971E-2E3EA3A9E9E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContribuyentesApi.Core", "ContribuyentesApi.Core\ContribuyentesApi.Core.csproj", "{9302221E-46EF-4BEA-971E-2E3EA3A9E9E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContribuyentesApi.Services", "ContribuyentesApi.Services\ContribuyentesApi.Services.csproj", "{A597800D-8252-4F30-945E-3A260859F5DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContribuyentesApi.Services", "ContribuyentesApi.Services\ContribuyentesApi.Services.csproj", "{A597800D-8252-4F30-945E-3A260859F5DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContribuyentesApi.Infrastructure", "ContribuyentesApi.Infrastructure\ContribuyentesApi.Infrastructure.csproj", "{D2A5CF23-D4F5-45CD-B292-6E5FAD36961E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContribuyentesApi.Infrastructure", "ContribuyentesApi.Infrastructure\ContribuyentesApi.Infrastructure.csproj", "{D2A5CF23-D4F5-45CD-B292-6E5FAD36961E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContribuyentesApi.Test", "ContribuyentesApi.Test\ContribuyentesApi.Test.csproj", "{F3D173A9-6590-4EE4-850E-311BDE798E12}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D2A5CF23-D4F5-45CD-B292-6E5FAD36961E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2A5CF23-D4F5-45CD-B292-6E5FAD36961E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2A5CF23-D4F5-45CD-B292-6E5FAD36961E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3D173A9-6590-4EE4-850E-311BDE798E12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3D173A9-6590-4EE4-850E-311BDE798E12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3D173A9-6590-4EE4-850E-311BDE798E12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3D173A9-6590-4EE4-850E-311BDE798E12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
